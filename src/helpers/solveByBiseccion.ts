@@ -1,5 +1,5 @@
 import { MathNode, abs } from 'mathjs';
-import { BissectionRes } from '../types/types';
+import { BissectionRes } from '../types/iterations';
 
 export const solveByBiseccion = (f: MathNode, a:number, b:number, e:number): BissectionRes[]|null => {
     const iterations: BissectionRes[] = [];

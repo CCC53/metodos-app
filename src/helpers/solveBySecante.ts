@@ -1,5 +1,5 @@
 import { MathNode, abs } from 'mathjs';
-import { SecanteRes } from "../types/types";
+import { SecanteRes } from "../types/iterations";
 
 
 export const solveBySecante = (f:MathNode, x0:number, x1:number, e:number): SecanteRes[] => {

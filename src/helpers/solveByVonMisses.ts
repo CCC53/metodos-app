@@ -1,5 +1,5 @@
 import { abs, derivative, MathNode } from "mathjs";
-import { VonMissesRes } from '../types/types';
+import { VonMissesRes } from '../types/iterations';
 
 export const solveByVonMisses = (f:MathNode, x0:number, e:number): VonMissesRes[] => {
     const iterations: VonMissesRes[] = [];

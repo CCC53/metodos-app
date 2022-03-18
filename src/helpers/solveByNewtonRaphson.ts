@@ -1,5 +1,5 @@
 import { MathNode, abs, derivative } from 'mathjs';
-import { NewtonRaphsonRes } from '../types/types';
+import { NewtonRaphsonRes } from '../types/iterations';
 
 export const solveByNewtonRaphson = (f:MathNode, x0:number, e:number): NewtonRaphsonRes[] => {
     let error = 1;
