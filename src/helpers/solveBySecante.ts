@@ -14,12 +14,12 @@ export const solveBySecante = (f:MathNode, x0:number, x1:number, e:number): Seca
         index++;
         const iteration: SecanteRes = {
             index,
-            x0,
-            x1,
-            fx0,
-            fx1,
-            x2,
-            error,
+            x0: Number(x0.toFixed(6)),
+            x1: Number(x1.toFixed(6)),
+            fx0: Number(fx0.toFixed(6)),
+            fx1: Number(fx1.toFixed(6)),
+            x2: Number(x2.toFixed(6)),
+            error: Number(error.toFixed(6)),
             continue: (error < e ? 'Si' : 'No')
         }
         iterations.push(iteration);

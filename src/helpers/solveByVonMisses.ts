@@ -13,11 +13,11 @@ export const solveByVonMisses = (f:MathNode, x0:number, e:number): VonMissesRes[
         index++;
         const iteration: VonMissesRes = {
             index,
-            x0,
-            x1,
-            fx,
-            dfx,
-            error,
+            x0: Number(x0.toFixed(6)),
+            x1: Number(x1.toFixed(6)),
+            fx: Number(fx.toFixed(6)),
+            dfx: Number(dfx.toFixed(6)),
+            error: Number(error.toFixed(6)),
             continue: (error < e ? 'Si' : 'No')
         }
         iterations.push(iteration);

@@ -8,18 +8,18 @@ export const solveByBiseccion = (f: MathNode, a:number, b:number, e:number): Bis
     if (f.evaluate({x:a})*f.evaluate({x:b}) > 0) {
         return null;
     }
-    while (error >= e) {
+    while (error > e) {
         let m = (a+b)/2;
         const fa = f.evaluate({x:a});
         const fx1 = f.evaluate({x:m});
         const change = fa*fx1;
         const iteration: BissectionRes = {
             index,
-            x0: a,
-            x1: b,
-            m,
-            change,
-            error,
+            x0: Number(a.toFixed(6)),
+            x1: Number(b.toFixed(6)),
+            m: Number(m.toFixed(6)),
+            change: Number(change.toFixed(6)),
+            error: Number(error.toFixed(6)),
             continue: ''
         }
         if (change < 0) {

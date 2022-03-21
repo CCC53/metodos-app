@@ -9,6 +9,7 @@ export const NavBar = () => {
       <Link to={'/metodos/newton-raphson'}>Newton Raphson</Link>
       <Link to={'/metodos/von-misses'}>Von Misses</Link>
       <Link to={'/metodos/secante'}>Secante</Link>
+      <Link to={'/metodos/punto-fijo'}>Punto Fijo</Link>
     </div>
   )
 }

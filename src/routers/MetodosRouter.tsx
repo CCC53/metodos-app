@@ -4,6 +4,7 @@ import { BiseccionPage } from '../components/pages/BiseccionPage';
 import { NewtonRaphsonPage } from '../components/pages/NewtonRaphsonPage';
 import { VonMissesPage } from '../components/pages/VonMissesPage';
 import { SecantePage } from '../components/pages/SecantePage';
+import { PuntoFijoPage } from '../components/pages/PuntoFijoPage';
 
 export const MetodosRouter = () => {
   return (
@@ -12,6 +13,7 @@ export const MetodosRouter = () => {
         <Route path="newton-raphson" element={<NewtonRaphsonPage/>}/>
         <Route path="von-misses" element={<VonMissesPage/>}/>
         <Route path="secante" element={<SecantePage/>}/>
+        <Route path="punto-fijo" element={<PuntoFijoPage/>}/>
         <Route path="*" element={<Navigate to={'biseccion'}/>}/>
     </Routes>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { parse } from 'mathjs';
+import Latex from "react-latex-next";
 import { NavBar } from '../ui/NavBar';
 import { solveByNewtonRaphson } from '../../helpers/solveByNewtonRaphson';
 import { DynamicTable } from '../ui/DynamicTable';
@@ -22,8 +23,8 @@ const formatTable = (rows: NewtonRaphsonRes[]): JSX.Element[] => {
 
 
 export const NewtonRaphsonPage = () => {
-  const f = parse('cos(x)-x^2');
-  const data = solveByNewtonRaphson(f,1,0.001);
+  const fx = parse('cos(x)-x^2');
+  const data = solveByNewtonRaphson(fx,1,0.001);
   const solution = data.find(iteration => iteration.continue === 'Si');
   const tableData: DynamicTableContent = {
     headers: [
@@ -41,7 +42,7 @@ export const NewtonRaphsonPage = () => {
   return (
     <>
       <NavBar/>
-      <h1>Ecuacion: cos(x)-x^2</h1>
+      <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
       <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
       <h3>{ solution && `La solucion de la ecuacion es ${solution.x1}`}</h3>
     </>

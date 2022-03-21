@@ -23,3 +23,5 @@ export interface SecanteRes extends Iteration {
     fx1: number;
     x2: number;
 }
+
+export interface PuntoFijoRes extends Iteration {}

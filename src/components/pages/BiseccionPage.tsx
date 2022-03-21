@@ -1,5 +1,6 @@
 import React from 'react';
 import { parse } from 'mathjs';
+import Latex from "react-latex-next";
 import { NavBar } from '../ui/NavBar';
 import { solveByBiseccion } from '../../helpers/solveByBiseccion';
 import { BissectionRes } from '../../types/iterations';
@@ -21,8 +22,8 @@ const formatTable = (rows: BissectionRes[]): JSX.Element[] => {
 }
 
 export const BiseccionPage = () => {
-  const f = parse('cos(x)^2-2sin(x)');
-  const data = solveByBiseccion(f,0,1,0.001);
+  const fx = parse('cos(x)-x^2');
+  const data = solveByBiseccion(fx,0,1,0.001);
   const solution = data && data.find(iteration => iteration.continue === 'Si');
   const tableData: DynamicTableContent = {
     headers: [
@@ -40,7 +41,7 @@ export const BiseccionPage = () => {
   return (
     <>
       <NavBar/>
-      <h1>Ecuacion: cos(x)^2-2sin(x)</h1>
+      <h2>Ecuacion: {<Latex>{`$f(x)=${fx.toTex()}$`}</Latex>}</h2>
       {
         !data ? <h1>La funcion no cambia de signo</h1> : (
           <div>

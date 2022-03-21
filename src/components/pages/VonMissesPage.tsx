@@ -1,5 +1,6 @@
 import React from 'react'
 import { parse } from 'mathjs';
+import Latex from "react-latex-next";
 import { NavBar } from '../ui/NavBar';
 import { solveByVonMisses } from '../../helpers/solveByVonMisses';
 import { DynamicTable } from '../ui/DynamicTable';
@@ -21,8 +22,8 @@ const formatTable = (row: VonMissesRes[]): JSX.Element[] => {
 }
 
 export const VonMissesPage = () => {
-  const f = parse('cos(x)-x^2');
-  const data = solveByVonMisses(f,1,0.001);
+  const fx = parse('cos(x)-x^2');
+  const data = solveByVonMisses(fx,1,0.001);
   const solution = data.find(iteration => iteration.continue === 'Si');
   const tableData: DynamicTableContent = {
     headers: [
@@ -40,7 +41,7 @@ export const VonMissesPage = () => {
   return (
     <>
       <NavBar/>
-      <h1>Ecuacion: cos(x)-x^2</h1>
+      <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
       <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
       <h3>{ solution && `La solucion de la ecuacion es ${solution.x1}`}</h3>
     </>

@@ -14,11 +14,11 @@ export const solveByNewtonRaphson = (f:MathNode, x0:number, e:number): NewtonRap
         index++;
         const iteration: NewtonRaphsonRes = {
             index,
-            fx,
-            dfx,
-            x0,
-            x1,
-            error,
+            fx: Number(fx.toFixed(6)),
+            dfx: Number(dfx.toFixed(6)),
+            x0: Number(x0.toFixed(6)),
+            x1: Number(x1.toFixed(6)),
+            error: Number(error.toFixed(6)),
             continue: (error < e ? 'Si' : 'No')
         }
         iterations.push(iteration);
