@@ -4,6 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import { MetodosApp } from './MetodosApp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'katex/dist/katex.min.css';
+import './styles.scss';
+import 'animate.css';
 
 ReactDOM.render(
   <React.StrictMode>

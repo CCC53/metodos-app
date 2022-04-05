@@ -1,10 +1,10 @@
 import React from 'react'
-import { NavBar } from '../ui/NavBar'
+import { NavigationBar } from '../ui/NavigationBar'
 
 export const PortadaPage = () => {
   return (
-    <div>
-      <NavBar/>
+    <div className='animate__animated animate__fadeIn'>
+      <NavigationBar/>
       PortadaPage
     </div>
   )

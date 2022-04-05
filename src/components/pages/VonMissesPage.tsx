@@ -1,10 +1,10 @@
 import React from 'react'
 import { parse } from 'mathjs';
 import Latex from "react-latex-next";
-import { NavBar } from '../ui/NavBar';
+import { NavigationBar } from '../ui/NavigationBar';
 import { solveByVonMisses } from '../../helpers/solveByVonMisses';
 import { DynamicTable } from '../ui/DynamicTable';
-import { DynamicTableContent } from '../../types/dynamicTable';
+import { DynamicTableContent } from '../../types/ui';
 import { VonMissesRes } from '../../types/iterations';
 
 const formatTable = (row: VonMissesRes[]): JSX.Element[] => {
@@ -39,11 +39,11 @@ export const VonMissesPage = () => {
   }
 
   return (
-    <>
-      <NavBar/>
+    <div className='animate__animated animate__fadeIn'>
+      <NavigationBar/>
       <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
       <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
       <h3>{ solution && `La solucion de la ecuacion es ${solution.x1}`}</h3>
-    </>
+    </div>
   )
 }

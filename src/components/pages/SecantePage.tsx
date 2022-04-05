@@ -1,10 +1,10 @@
 import React from 'react'
 import { parse } from 'mathjs';
 import Latex from "react-latex-next";
-import { NavBar } from '../ui/NavBar';
+import { NavigationBar } from '../ui/NavigationBar';
 import { solveBySecante } from '../../helpers/solveBySecante';
 import { SecanteRes } from '../../types/iterations';
-import { DynamicTableContent } from '../../types/dynamicTable';
+import { DynamicTableContent } from '../../types/ui';
 import { DynamicTable } from '../ui/DynamicTable';
 
 const formatTable = (rows: SecanteRes[]): JSX.Element[] => {
@@ -42,11 +42,11 @@ export const SecantePage = () => {
 
 
   return (
-    <>
-      <NavBar/>
+    <div className='animate__animated animate__fadeIn'>
+      <NavigationBar/>
       <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
       <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
       <h3>{ solution && `La solucion de la ecuacion es ${solution.x2}`}</h3>
-    </>
+    </div>
   )
 }

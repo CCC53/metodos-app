@@ -3,9 +3,9 @@ import Latex from "react-latex-next";
 import { parse } from 'mathjs';
 import { solveByPuntoFijo } from '../../helpers/solveByPuntoFIjo';
 import { DynamicTable } from '../ui/DynamicTable';
-import { DynamicTableContent } from '../../types/dynamicTable';
+import { DynamicTableContent } from '../../types/ui';
 import { PuntoFijoRes } from '../../types/iterations';
-import { NavBar } from '../ui/NavBar';
+import { NavigationBar } from '../ui/NavigationBar';
 
 const formatTable = (rows: PuntoFijoRes[]): JSX.Element[] => {
   return rows.map(row => (
@@ -36,13 +36,13 @@ export const PuntoFijoPage = () => {
   }
 
   return (
-    <>
-      <NavBar/>
+    <div className='animate__animated animate__fadeIn'>
+      <NavigationBar/>
       <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
       <br/>
       <h2><Latex>{`$g(x)=${gx.toTex()}$`}</Latex></h2>
       <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
       <h3>{ solution && `La solucion de la ecuacion es ${solution.x1}`}</h3>
-    </>
+    </div>
   )
 }

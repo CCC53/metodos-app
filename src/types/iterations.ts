@@ -25,3 +25,8 @@ export interface SecanteRes extends Iteration {
 }
 
 export interface PuntoFijoRes extends Iteration {}
+
+export interface BiseccionSolutionRes {
+    data: BissectionRes[];
+    solution: number;
+}

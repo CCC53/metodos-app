@@ -1,11 +1,18 @@
 import React from 'react';
-import { parse } from 'mathjs';
-import Latex from "react-latex-next";
-import { NavBar } from '../ui/NavBar';
-import { solveByBiseccion } from '../../helpers/solveByBiseccion';
-import { BissectionRes } from '../../types/iterations';
+import { NavigationBar } from '../ui/NavigationBar';
+import { DynamicInput, DynamicTableContent } from '../../types/ui';
+import { DynamicForm } from '../ui/DynamicForm';
+import { useState } from 'react';
+import { BiseccionSolutionRes, BissectionRes } from '../../types/iterations';
 import { DynamicTable } from '../ui/DynamicTable';
-import { DynamicTableContent } from '../../types/dynamicTable';
+import { Progress } from 'reactstrap';
+
+const formContent: DynamicInput[] = [
+  { name: 'ecuation', type: 'text', label: 'Ecuacion a resolver' },
+  { name: 'pointA', type: 'number', label: 'Valor de A' },
+  { name: 'pointB', type: 'number', label: 'Valor de B' },
+  { name: 'error', type: 'number', label: '% de error' }
+];
 
 const formatTable = (rows: BissectionRes[]): JSX.Element[] => {
   return rows.map(row => (
@@ -18,38 +25,55 @@ const formatTable = (rows: BissectionRes[]): JSX.Element[] => {
       <td>{row.error}</td>
       <td>{row.continue}</td>
     </tr>
-  ))
-}
+  ));
+};
 
-export const BiseccionPage = () => {
-  const fx = parse('cos(x)-x^2');
-  const data = solveByBiseccion(fx,0,1,0.001);
-  const solution = data && data.find(iteration => iteration.continue === 'Si');
+const setTableData = (data: BissectionRes[]) => {
   const tableData: DynamicTableContent = {
     headers: [
       { key: 'index', label:'Iteracion' },
-      { key: 'x0', label: 'x0' },
-      { key: 'x1', label: 'x1' },
+      { key: 'x0', label: 'x_{0}' },
+      { key: 'x1', label: 'x_{1}' },
       { key: 'm', label: 'm' },
-      { key: 'change', label: "f(x0)*f(xn+1)" },
-      { key: 'error', label: '|x0-xn+1|' },
-      { key: 'continue', label: '|x0-xn+1| < e' }
+      { key: 'change', label: "f(x_{0})*f(x_{n+1})" },
+      { key: 'error', label: '|x_{0}-x_{n+1}|' },
+      { key: 'continue', label: '|x_{0}-x_{n+1}| < ε' }
     ],
-    rows: data ? formatTable(data) : []
+    rows: formatTable(data)
   }
-  
+  return tableData;
+}
+
+export const BiseccionPage = () => {
+
+  const initialState: BiseccionSolutionRes = {
+    data: [],
+    solution: 0
+  };
+
+  const [res, setData] = useState<BiseccionSolutionRes>(initialState);
+  const [loading, setLoading] = useState(false);
+  const { data, solution } = res;
+  const { headers, rows } = setTableData(data);
+
   return (
-    <>
-      <NavBar/>
-      <h2>Ecuacion: {<Latex>{`$f(x)=${fx.toTex()}$`}</Latex>}</h2>
-      {
-        !data ? <h1>La funcion no cambia de signo</h1> : (
-          <div>
-            <DynamicTable headers={tableData.headers} rows={tableData.rows} />
-            <h3>{solution && `La solucion de la ecuacion es ${solution.m}`}</h3>
-          </div>
-        )
-      }
-    </>
-  )
+    <div className='animate__animated animate__fadeIn'>
+      <NavigationBar/>
+      <h3>Método de bisección</h3>
+      <DynamicForm inputs={formContent} method={'biseccion'} returnData={(data) => setData(data)}
+          cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)} />
+      <div className="main-container animate__animated animate__fadeIn">
+        {
+          loading ? <Progress animated color="primary" value="100"/> : (
+            data.length > 0 && (
+              <div className="animate__animated animate__fadeIn">
+                <DynamicTable headers={headers} rows={rows}/>
+                <h4>La solucion es {solution}</h4>
+              </div>
+            )
+          )
+        }
+      </div>
+    </div>
+  );
 }

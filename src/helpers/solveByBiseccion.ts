@@ -1,13 +1,10 @@
 import { MathNode, abs } from 'mathjs';
 import { BissectionRes } from '../types/iterations';
 
-export const solveByBiseccion = (f: MathNode, a:number, b:number, e:number): BissectionRes[]|null => {
+export const solveByBiseccion = (f: MathNode, a:number, b:number, e:number): BissectionRes[] => {
     const iterations: BissectionRes[] = [];
     let error = 1;
     let index = 1;
-    if (f.evaluate({x:a})*f.evaluate({x:b}) > 0) {
-        return null;
-    }
     while (error > e) {
         let m = (a+b)/2;
         const fa = f.evaluate({x:a});

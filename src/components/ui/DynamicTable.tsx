@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { Table } from 'reactstrap';
-import { DynamicTableContent } from '../../types/dynamicTable';
+import Latex from "react-latex-next";
+import { DynamicTableContent } from '../../types/ui';
 
 export const DynamicTable = ({headers, rows}:DynamicTableContent) => {
 
@@ -9,7 +10,7 @@ export const DynamicTable = ({headers, rows}:DynamicTableContent) => {
       <thead>
         <tr>
           {
-            headers.map(({key, label}) => <th key={key}>{label}</th>)
+            headers.map(({key, label}) => <th key={key}><Latex>{`$${label}$`}</Latex></th>)
           }
         </tr>
       </thead>
