@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import isEmpty from 'validator/lib/isEmpty';
 import { DynamicFormContent } from '../../types/ui';
 import { useForm } from '../../hooks/useForm';
 import { selectMethod } from '../../helpers/selectMethod';
@@ -21,6 +22,7 @@ export const DynamicForm = ({ inputs, method, returnData, cleanData, setLoading 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    isValid();
     setLoading(true)
     setTimeout(() => {
       const data = selectMethod(method, formValues);
@@ -32,6 +34,18 @@ export const DynamicForm = ({ inputs, method, returnData, cleanData, setLoading 
   const handleReset = () => {
     reset(initialState);
     cleanData();
+  }
+
+  const isValid = () => {
+    let valid = true;
+    inputs.forEach(({name}) => {
+      if(isEmpty(formValues[name])) {
+        valid = true;
+      } else {
+        valid = false;
+      }
+    });
+    return valid;
   }
 
   return (
@@ -50,8 +64,8 @@ export const DynamicForm = ({ inputs, method, returnData, cleanData, setLoading 
           }
         </Row>
         <div className='d-flex justify-content-evenly buttons'>
-          <Button type='submit' color='outline-primary'>Resolver</Button>
-          <Button type='button' color='outline-danger' onClick={handleReset}>Limpiar</Button>
+          <Button type='submit' color='primary' disabled={isValid()}>Resolver</Button>
+          <Button type='button' color='danger' onClick={handleReset}>Limpiar</Button>
         </div>
       </Form>
     </div>

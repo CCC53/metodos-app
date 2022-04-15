@@ -6,18 +6,6 @@ export interface Iteration {
     continue: string;
 }
 
-export interface BissectionRes extends Iteration {
-    m: number;
-    change: number;
-}
-
-export interface NewtonRaphsonRes extends Iteration {
-    fx:number;
-    dfx: number;
-}
-
-export interface VonMissesRes extends NewtonRaphsonRes {};
-
 export interface SecanteRes extends Iteration {
     fx0: number;
     fx1: number;
@@ -26,7 +14,12 @@ export interface SecanteRes extends Iteration {
 
 export interface PuntoFijoRes extends Iteration {}
 
-export interface BiseccionSolutionRes {
-    data: BissectionRes[];
+export interface SecanteSolutionRes {
+    data: SecanteRes[];
+    solution: number;
+}
+
+export interface PuntoFijoSolutionRes {
+    data: PuntoFijoRes[];
     solution: number;
 }

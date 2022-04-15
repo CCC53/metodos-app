@@ -1,11 +1,11 @@
 import React from 'react'
-import { parse } from 'mathjs';
-import Latex from "react-latex-next";
-import { NavigationBar } from '../ui/NavigationBar';
-import { solveBySecante } from '../../helpers/solveBySecante';
-import { SecanteRes } from '../../types/iterations';
-import { DynamicTableContent } from '../../types/ui';
+import { useState } from 'react';
+import { Progress } from 'reactstrap';
+import { DynamicForm } from '../ui/DynamicForm';
 import { DynamicTable } from '../ui/DynamicTable';
+import { NavigationBar } from '../ui/NavigationBar';
+import { SecanteRes, SecanteSolutionRes } from '../../types/iterations';
+import { DynamicTableContent, DynamicInput } from '../../types/ui';
 
 const formatTable = (rows: SecanteRes[]): JSX.Element[] => {
   return rows.map(row => (
@@ -19,34 +19,63 @@ const formatTable = (rows: SecanteRes[]): JSX.Element[] => {
       <td>{row.error}</td>
       <td>{row.continue}</td>
     </tr>
-  ))
-}
+  ));
+};
 
-export const SecantePage = () => {
-  const fx = parse('cos(x)-x^2');
-  const data = solveBySecante(fx,0.5,1,0.001);
-  const solution = data.find(iteration => iteration.continue === 'Si');
+const formContent: DynamicInput[] = [
+  { name: 'ecuation', type: 'text', label: 'Ecuación a resolver' },
+  { name: 'x0', label: 'Valor de xn-1', type: 'number' },
+  { name: 'x1', label: 'Valor de xn', type: 'number' },
+  { name: 'error', type: 'number', label: '% de error' }
+];
+
+const setTableData = (data: SecanteRes[]) => {
   const tableData: DynamicTableContent = {
     headers: [
       { key: 'index', label: 'Iteracion' },
-      { key: 'x0', label: 'xn-1' },
-      { key: 'x1', label: 'xn' },
-      { key: 'fx0', label: "f(xn-1)" },
-      { key: 'fx1', label: "f(xn)" },
-      { key: 'x2', label: "xn+1" },
-      { key: 'error', label: '|x0-xn+1|' },
-      { key: 'continue', label: '|x0-xn+1| < e' }
+      { key: 'x0', label: 'x_{n-1}' },
+      { key: 'x1', label: 'x_{n}' },
+      { key: 'fx0', label: "f(x_{n-1})" },
+      { key: 'fx1', label: "f(x_{n})" },
+      { key: 'x2', label: "x_{n+1}" },
+      { key: 'error', label: '|x_{0}-x_{n+1}|' },
+      { key: 'continue', label: '|x_{0}-x_{n+1}| < ε' }
     ],
     rows: formatTable(data)
-  }
+  };
+  return tableData;
+};
 
+export const SecantePage = () => {
+
+  const initialState: SecanteSolutionRes = {
+    data: [],
+    solution: 0
+  };
+
+  const [res, setData] = useState<SecanteSolutionRes>(initialState);
+  const [loading, setLoading] = useState(false);
+  const { data, solution } = res;
+  const { headers, rows } = setTableData(data);
 
   return (
     <div className='animate__animated animate__fadeIn'>
       <NavigationBar/>
-      <h2>Ecuacion: {<Latex>{`$${fx.toTex()}$`}</Latex>}</h2>
-      <DynamicTable headers={tableData.headers} rows={tableData.rows}/>
-      <h3>{ solution && `La solucion de la ecuacion es ${solution.x2}`}</h3>
+      <h3>Método de la secante</h3>
+      <DynamicForm inputs={formContent} method={'secante'} returnData={(data) => setData(data)}
+          cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)} />
+      <div className="main-container animate__animated animate__fadeIn">
+        {
+          loading ? <Progress animated color="primary" value="100"/> : (
+            data.length > 0 && (
+              <div className="animate__animated animate__fadeIn">
+                <DynamicTable headers={headers} rows={rows}/>
+                <h4>Una posible solución a esta ecuación es {solution}</h4>
+              </div>
+            )
+          )
+        }
+      </div>
     </div>
   )
 }
