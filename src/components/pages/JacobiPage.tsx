@@ -38,7 +38,6 @@ const setTableData = (data: JacobiRes[]) => {
           { key: 'x1', label: "x_{n+1}" },
           { key: 'y1', label: "y_{n+1}" },
           { key: 'z1', label: "z_{n+1}" },
-          { key: 'Continue', label: 'Continua' }
         ],
         rows: formatTable(data)
     }
