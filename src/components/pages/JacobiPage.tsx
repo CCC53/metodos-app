@@ -5,8 +5,6 @@ import { DynamicTable } from '../ui/DynamicTable';
 import { NavigationBar } from '../ui/NavigationBar'
 import { JacobiSolutionRes, JacobiRes } from '../../types/iterations';
 import { DynamicInput, DynamicTableContent } from '../../types/ui';
-import { parse } from 'mathjs';
-import { solveByJacobi } from '../../helpers/solveByJacobi';
 
 const formatTable = (rows: JacobiRes[]): JSX.Element[] => {
     return rows.map(row => (
@@ -61,12 +59,6 @@ export const JacobiPage = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const { data, solution } = res;
     const { headers, rows } = setTableData(data);
-
-    const ex = parse('(-2y-z+22)/6');
-    const ey = parse('(x-2z+30)/8');
-    const ez = parse('(23-x+y)/6');
-    const dataTest = solveByJacobi(ex, ey, ez, 0.001);
-    console.log(dataTest);
 
     return (
       <div className='animate__animated animate__fadeIn'>
