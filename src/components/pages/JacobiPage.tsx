@@ -16,7 +16,6 @@ const formatTable = (rows: JacobiRes[]): JSX.Element[] => {
         <td>{row.x1}</td>
         <td>{row.y1}</td>
         <td>{row.z1}</td>
-        <td>{row.continue}</td>
       </tr>
     ));
 };
