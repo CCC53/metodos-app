@@ -22,7 +22,6 @@ export const DynamicForm = ({ inputs, method, returnData, cleanData, setLoading 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    isValid();
     setLoading(true)
     setTimeout(() => {
       const data = selectMethod(method, formValues);

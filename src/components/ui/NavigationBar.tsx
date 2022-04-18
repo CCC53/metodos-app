@@ -12,6 +12,9 @@ export const NavigationBar = () => {
       <NavItem>
         <NavLink className='link' to={'/metodos/punto-fijo'}>Punto Fijo</NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink className='link' to={'/metodos/jacobi'}>Jacobi</NavLink>
+      </NavItem>
     </Navbar>
   )
 }
