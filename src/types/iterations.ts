@@ -25,6 +25,8 @@ export interface JacobiRes {
     continue: string;
 }
 
+export interface GaussSeidelRes extends JacobiRes {}
+
 export interface SystemEcuationSolution {
     x: number;
     y: number;
@@ -43,5 +45,10 @@ export interface PuntoFijoSolutionRes {
 
 export interface JacobiSolutionRes {
     data: JacobiRes[];
+    solution: SystemEcuationSolution;
+}
+
+export interface GaussSeidelSolutionRes {
+    data: GaussSeidelRes[];
     solution: SystemEcuationSolution;
 }

@@ -63,7 +63,7 @@ export const JacobiPage = () => {
          <NavigationBar/>
          <h3>Método de Jacobi</h3>
          <DynamicForm inputs={formContent} method={'jacobi'} returnData={(data) => setData(data)}
-             cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)} />
+             cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)}/>
          <div className="main-container animate__animated animate__fadeIn">
            {
              loading ? <Progress animated color="primary" value="100"/> : (
