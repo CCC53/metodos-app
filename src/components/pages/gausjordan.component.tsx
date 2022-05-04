@@ -73,26 +73,9 @@ export const GaussjordanComponent: React.FC = (): JSX.Element => {
                   />
                 </div>
               ))}
-
-                <div key={index+1}>
-                  <Input
-                    style={{ width: 70 }}
-                    name={"columnas"}
-                    type="number"
-                    step="any"
-                    defaultValue={element}
-                    onChange={(eve) => {
-                      element = Number(eve.target.value);
-
-                      SetMatrizFenerate((oldState) => {
-                        return matrizGenerated;
-                      });
-                    }}
-                  />
-                </div>
+              
             </div>
           ))}
-
           <Button
             name={"columnas"}
             onClick={() => {
