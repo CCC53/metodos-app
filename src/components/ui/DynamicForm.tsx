@@ -27,7 +27,12 @@ export const DynamicForm = ({ inputs, method, returnData, cleanData, setLoading 
       const data = selectMethod(method, formValues);
       returnData(data);
       setLoading(false);
+      console.log({data})
     }, 500);
+    console.log({inputs})
+    console.log({method})
+    console.log({formValues})
+
   }
 
   const handleReset = () => {
