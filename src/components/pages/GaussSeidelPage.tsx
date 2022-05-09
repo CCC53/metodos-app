@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Progress } from 'reactstrap';
 import { DynamicForm } from '../ui/DynamicForm';
 import { DynamicTable } from '../ui/DynamicTable';
-import { NavigationBar } from '../ui/NavigationBar'
 import { GaussSeidelRes, GaussSeidelSolutionRes } from '../../types/iterations';
 import { DynamicInput, DynamicTableContent } from '../../types/ui';
 
@@ -61,7 +60,6 @@ export const GaussSeidelPage = () => {
 
   return (
     <div className='animate__animated animate__fadeIn'>
-      <NavigationBar/>
       <h3>Método de Gauss Seidel</h3>
       <DynamicForm inputs={formContent} method={'gauss-seidel'} returnData={(data) => setData(data)}
            cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)}/>

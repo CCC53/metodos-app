@@ -6,14 +6,14 @@ export const solveByPuntoFijo = (gx: MathNode, x0: number, e: number): PuntoFijo
   let error = 1;
   let index = 0;
   while(error > e) {
-    const x1 = gx.evaluate({x: x0});
-    error = abs(x1-x0);
+    const x1 = Number(gx.evaluate({x: x0}).toFixed(6));
+    error = Number(abs(x1-x0).toFixed(6));
     index++;
     const iteration: PuntoFijoRes = {
       index,
-      x0: Number(x0.toFixed(6)),
-      x1: Number(x1.toFixed(6)),
-      error: Number(error.toFixed(6)),
+      x0,
+      x1,
+      error,
       continue: (error < e ? 'Si' : 'No')
     }
     x0 = x1;

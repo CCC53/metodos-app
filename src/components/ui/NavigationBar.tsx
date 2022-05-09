@@ -14,6 +14,12 @@ export const NavigationBar = () => {
     <Navbar color="dark" dark>
       <NavbarBrand onClick={navigateToMainView} className="brand">Métodos Numéricos</NavbarBrand>
       <NavItem>
+        <NavLink className='link' to={'/metodos/biseccion'}>Bissecion</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink className='link' to={'/metodos/newton-raphson'}>Newton Raphson</NavLink>
+      </NavItem>
+      <NavItem>
         <NavLink className='link' to={'/metodos/secante'}>Secante</NavLink>
       </NavItem>
       <NavItem>

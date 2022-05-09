@@ -4,10 +4,14 @@ import { SecantePage } from '../components/pages/SecantePage';
 import { PuntoFijoPage } from '../components/pages/PuntoFijoPage';
 import { JacobiPage } from '../components/pages/JacobiPage';
 import { GaussSeidelPage } from '../components/pages/GaussSeidelPage';
+import { BiseccionPage } from '../components/pages/BiseccionPage';
+import { NewtonRaphsonPage } from '../components/pages/NewtonRaphsonPage';
 
 export const MetodosRouter = () => {
   return (
     <Routes>
+        <Route path="biseccion" element={<BiseccionPage/>}/>
+        <Route path="newton-raphson" element={<NewtonRaphsonPage/>}/>
         <Route path="secante" element={<SecantePage/>}/>
         <Route path="punto-fijo" element={<PuntoFijoPage/>}/>
         <Route path="jacobi" element={<JacobiPage/>}/>

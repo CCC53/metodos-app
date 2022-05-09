@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Progress } from 'reactstrap';
 import { DynamicForm } from '../ui/DynamicForm';
 import { DynamicTable } from '../ui/DynamicTable';
-import { NavigationBar } from '../ui/NavigationBar'
 import { JacobiSolutionRes, JacobiRes } from '../../types/iterations';
 import { DynamicInput, DynamicTableContent } from '../../types/ui';
 
@@ -60,7 +59,6 @@ export const JacobiPage = () => {
 
     return (
       <div className='animate__animated animate__fadeIn'>
-         <NavigationBar/>
          <h3>Método de Jacobi</h3>
          <DynamicForm inputs={formContent} method={'jacobi'} returnData={(data) => setData(data)}
              cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)}/>

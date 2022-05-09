@@ -1,9 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Progress } from 'reactstrap';
 import { DynamicForm } from '../ui/DynamicForm';
 import { DynamicTable } from '../ui/DynamicTable';
-import { NavigationBar } from '../ui/NavigationBar';
 import { DynamicTableContent, DynamicInput } from '../../types/ui';
 import { PuntoFijoRes, PuntoFijoSolutionRes } from '../../types/iterations';
 
@@ -53,7 +51,6 @@ export const PuntoFijoPage = () => {
 
   return (
     <div className='animate__animated animate__fadeIn'>
-      <NavigationBar/>
       <h3>Método de punto fijo</h3>
       <DynamicForm inputs={formContent} method={'punto-fijo'} returnData={(data) => setData(data)}
           cleanData={() => setData(initialState)} setLoading={(loading) => setLoading(loading)} />
