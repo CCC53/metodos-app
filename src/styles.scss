@@ -4,6 +4,22 @@ body {
     background-color: whitesmoke;
 }
 
+.logosContainer {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3em;
+    img {
+        height: 10em;
+        margin-bottom: -4em;
+    }
+}
+
+.header {
+    .title {
+        font-weight: bold;
+    }
+}
+
 .link {
     color: rgb(153, 143, 143);
     font-size: 17px;

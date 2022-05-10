@@ -56,7 +56,7 @@ export const BiseccionPage = () => {
 
   return (
     <div className='animate__animated animate__fadeIn'>
-      <h3>Método de la biseccion</h3>
+      <h3>Método de Bisección</h3>
       <DynamicForm inputs={formContent} method={'biseccion'} returnData={(data) => setRes(data)}
              cleanData={() => setRes(initialState)} setLoading={(loading) => setLoading(loading)}/>
       <div className="main-container animate__animated animate__fadeIn">

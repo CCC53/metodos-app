@@ -55,7 +55,7 @@ export const NewtonRaphsonPage = () => {
 
   return (
     <div className='animate__animated animate__fadeIn'>
-      <h3>Método de la Newton Raphson</h3>
+      <h3>Método de Newton Raphson</h3>
       <DynamicForm inputs={formContent} method={'newton-raphson'} returnData={(data) => setRes(data)}
           cleanData={() => setRes(initialState)} setLoading={(loading) => setLoading(loading)} />
       <div className="main-container animate__animated animate__fadeIn">
