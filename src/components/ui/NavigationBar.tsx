@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import { NavigationItem } from '../../types/ui';
 
 export const NavigationBar = () => {
 
@@ -10,27 +11,26 @@ export const NavigationBar = () => {
     navigate('/');
   }
 
+  const navItems: NavigationItem[] = [
+    { label: 'Bisección', url: 'biseccion' },
+    { label: 'Newton Raphson', url: 'newton-raphson' },
+    { label: 'Von Misses', url: 'von-misses' },
+    { label: 'Secante', url: 'secante' },
+    { label: 'Punto Fijo', url: 'punto-fijo' },
+    { label: 'Jacobi', url: 'jacobi' },
+    { label: 'Gauss Seidel', url: 'gauss-seidel' },
+  ];
+
   return (
     <Navbar color="dark" dark>
       <NavbarBrand onClick={navigateToMainView} className="brand">Métodos Numéricos</NavbarBrand>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/biseccion'}>Bissecion</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/newton-raphson'}>Newton Raphson</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/secante'}>Secante</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/punto-fijo'}>Punto Fijo</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/jacobi'}>Jacobi</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink className='link' to={'/metodos/gauss-seidel'}>Gauss Seidel</NavLink>
-      </NavItem>
+      {
+        navItems.map(({ label, url }) => (
+          <NavItem key={url}>
+            <NavLink className={({isActive}) => `link ${isActive && "active"}`} to={`/metodos/${url}`}>{label}</NavLink>
+          </NavItem>
+        ))
+      }
     </Navbar>
   )
 }

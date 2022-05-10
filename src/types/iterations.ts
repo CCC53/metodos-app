@@ -16,6 +16,8 @@ export interface NewtonRaphsonRes extends Iteration {
     dfx: number;
 }
 
+export interface VonMissesRes extends NewtonRaphsonRes {};
+
 export interface SecanteRes extends Iteration {
     fx0: number;
     fx1: number;
@@ -50,6 +52,11 @@ export interface BiseccionSolutionRes {
 
 export interface NewtonRaphsonSolutionRes {
     data: NewtonRaphsonRes[];
+    solution: number;
+}
+
+export interface VonMissesSolutionRes {
+    data: VonMissesRes[];
     solution: number;
 }
 

@@ -1,12 +1,13 @@
 import { parse } from 'mathjs';
 import { solveByJacobi } from './solveByJacobi';
 import { solveBySecante } from './solveBySecante';
-import { solveByPuntoFijo } from './solveByPuntoFIjo';
-import { solveByGaussSeidel } from './solveByGaussSeidel';
-import { SecanteSolutionRes, PuntoFijoSolutionRes, SystemEcuationSolution, JacobiSolutionRes,
-         GaussSeidelSolutionRes, BiseccionSolutionRes, NewtonRaphsonSolutionRes } from '../types/iterations';
 import { solveByBiseccion } from './solveByBiseccion';
+import { solveByPuntoFijo } from './solveByPuntoFIjo';
+import { solveByVonMisses } from './solveByVonMisses';
+import { solveByGaussSeidel } from './solveByGaussSeidel';
 import { solveByNewtonRaphson } from './solveByNewtonRaphson';
+import { SecanteSolutionRes, PuntoFijoSolutionRes, SystemEcuationSolution, JacobiSolutionRes,
+         GaussSeidelSolutionRes, BiseccionSolutionRes, NewtonRaphsonSolutionRes, VonMissesSolutionRes } from '../types/iterations';
 
 export const selectMethod = (method: string, formData: any) => {
     switch (method) {
@@ -34,7 +35,19 @@ export const selectMethod = (method: string, formData: any) => {
                 data: dataNewtonRaphson,
                 solution: solutionNewtonRaphson
             }
-            return newtonRaphsonSolutionRes; 
+            return newtonRaphsonSolutionRes;
+        case 'von-misses':
+            const fx0 = parse(formData.ecuation);
+            const x2 = Number(formData.x0);
+            const e4 = Number(formData.error);
+            const dataVonMisses = solveByVonMisses(fx0, x2, e4);
+            const solItertation2 = dataVonMisses.find(item => item.continue === 'Si');
+            const solutionVonMisses = solItertation2 ? solItertation2.x1 : 0;
+            const vonMissesSolutionRes: VonMissesSolutionRes = {
+                data: dataVonMisses,
+                solution: solutionVonMisses
+            }
+            return vonMissesSolutionRes;
         case 'secante':
             const fx2 = parse(formData.ecuation);
             const x0 = Number(formData.x0);

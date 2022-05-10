@@ -24,3 +24,8 @@ export interface DynamicInput {
     label: string;
     type: ComponentProps<typeof Input>['type'];
 }
+
+export interface NavigationItem {
+    label: string;
+    url: string;
+}
