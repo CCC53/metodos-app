@@ -19,6 +19,7 @@ export const NavigationBar = () => {
     { label: 'Punto Fijo', url: 'punto-fijo' },
     { label: 'Jacobi', url: 'jacobi' },
     { label: 'Gauss Seidel', url: 'gauss-seidel' },
+    { label: 'Interpolación de Lagrange', url: 'interpolacion-lagrange' }
   ];
 
   return (

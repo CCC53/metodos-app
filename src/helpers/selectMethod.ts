@@ -6,6 +6,8 @@ import { solveByPuntoFijo } from './solveByPuntoFIjo';
 import { solveByVonMisses } from './solveByVonMisses';
 import { solveByGaussSeidel } from './solveByGaussSeidel';
 import { solveByNewtonRaphson } from './solveByNewtonRaphson';
+import { solveByLagrange } from './solveByLagrange';
+import { LagrangeSolutionRes } from '../types/iterations';
 import { SecanteSolutionRes, PuntoFijoSolutionRes, SystemEcuationSolution, JacobiSolutionRes,
          GaussSeidelSolutionRes, BiseccionSolutionRes, NewtonRaphsonSolutionRes, VonMissesSolutionRes } from '../types/iterations';
 
@@ -26,9 +28,9 @@ export const selectMethod = (method: string, formData: any) => {
             return biseccionSolutionRes;
         case 'newton-raphson': 
             const fx1 = parse(formData.ecuation);
-            const xi = Number(formData.x0);
+            const x3 = Number(formData.x0);
             const e2 = Number(formData.error);
-            const dataNewtonRaphson = solveByNewtonRaphson(fx1, xi, e2);
+            const dataNewtonRaphson = solveByNewtonRaphson(fx1, x3, e2);
             const solIteration1 = dataNewtonRaphson.find(item => item.continue === 'Si');
             const solutionNewtonRaphson = solIteration1 ? solIteration1.x1 : 0;
             const newtonRaphsonSolutionRes: NewtonRaphsonSolutionRes = {
@@ -99,5 +101,23 @@ export const selectMethod = (method: string, formData: any) => {
                 solution: solutionGauss
             }
             return gaussSolutionRes;
+        case 'interpolacion-lagrange':
+            const xiString = formData.xi.split(',') as string[];
+            const fiString = formData.fi.split(',') as string[];
+            const xi = xiString.map(item => Number(item)); 
+            const fi = fiString.map(item => Number(item)); 
+            const xI = Number(formData.x);
+            const lagrangeData = solveByLagrange(xi,fi,xI);
+            xi.push(xI);
+            xi.sort();
+            fi.push(lagrangeData);
+            fi.sort();
+            const lagrangeSolutionRes: LagrangeSolutionRes = {
+                xi,
+                fi,
+                x: xI,
+                xL: lagrangeData
+            }
+            return lagrangeSolutionRes;
     }
 }

@@ -7,6 +7,7 @@ import { GaussSeidelPage } from '../components/pages/GaussSeidelPage';
 import { BiseccionPage } from '../components/pages/BiseccionPage';
 import { NewtonRaphsonPage } from '../components/pages/NewtonRaphsonPage';
 import { VonMissesPage } from '../components/pages/VonMissesPage';
+import { LagrangePage } from '../components/pages/LagrangePage';
 
 export const MetodosRouter = () => {
   return (
@@ -18,7 +19,8 @@ export const MetodosRouter = () => {
         <Route path="punto-fijo" element={<PuntoFijoPage/>}/>
         <Route path="jacobi" element={<JacobiPage/>}/>
         <Route path="gauss-seidel" element={<GaussSeidelPage/>}/>
-        <Route path="*" element={<Navigate to={'secante'}/>}/>
+        <Route path="interpolacion-lagrange" element={<LagrangePage/>}/>
+        <Route path="*" element={<Navigate to={'biseccion'}/>}/>
     </Routes>
   )
 }

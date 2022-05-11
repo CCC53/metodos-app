@@ -1,5 +1,6 @@
 import { ComponentProps } from "react";
 import { Input } from "reactstrap";
+import { LagrangeSolutionRes } from './iterations';
 
 export interface DynamicTableContent {
     headers: ColumnDef[];
@@ -28,4 +29,9 @@ export interface DynamicInput {
 export interface NavigationItem {
     label: string;
     url: string;
+}
+
+export interface GraphProps {
+    data: LagrangeSolutionRes;
+    title: string;
 }

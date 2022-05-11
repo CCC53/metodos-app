@@ -79,3 +79,10 @@ export interface GaussSeidelSolutionRes {
     data: GaussSeidelRes[];
     solution: SystemEcuationSolution;
 }
+
+export interface LagrangeSolutionRes {
+    xi: number[];
+    fi: number[];
+    x: number;
+    xL: number;
+}
