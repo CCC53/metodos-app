@@ -17,7 +17,6 @@ export const PortadaPage = () => {
           <h3>Vazquez Torres Fernando</h3>
           <h3 className='title'>Integrantes</h3>
           <h3>Calette Cornelio Juan Carlos</h3>
-          <h3>Cortes Cruz Irving</h3>
           <h3>Duran Cruz Abel Ignacio</h3>
         </div>
     </div>

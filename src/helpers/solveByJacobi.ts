@@ -18,9 +18,9 @@ export const solveByJacobi = (fx: MathNode, fy: MathNode, fz: MathNode, e:number
         x0 = x1;
         y0 = y1;
         z0 = z1;
-        x1 = Number(fx.evaluate({y: y0, z: z0}).toFixed(3));
-        y1 = Number(fy.evaluate({x: x0, z: z0}).toFixed(3));
-        z1 = Number(fz.evaluate({x: x0, y: y0}).toFixed(3));
+        x1 = Number(fx.evaluate({y: y0, z: z0}).toFixed(4));
+        y1 = Number(fy.evaluate({x: x0, z: z0}).toFixed(4));
+        z1 = Number(fz.evaluate({x: x0, y: y0}).toFixed(4));
         error = abs(x1-x0)+abs(y1-y0)+abs(z1-z0);
         index++;
         const iteration: JacobiRes = {
