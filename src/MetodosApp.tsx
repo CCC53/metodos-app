@@ -5,7 +5,6 @@ import { NavigationBar } from './components/ui/NavigationBar';
 import { MetodosRouter } from './routers/MetodosRouter';
 
 export const MetodosApp = () => {
-  console.log(process.env.NODE_ENV);
   return (
     <Router>
       <NavigationBar/>

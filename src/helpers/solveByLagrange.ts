@@ -1,4 +1,3 @@
-
 export const solveByLagrange = (xi: number[], fi: number[], x: number) => {
     let xL = 0;
     for (let i=0; i<xi.length; i++) {

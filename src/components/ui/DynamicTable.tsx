@@ -4,7 +4,6 @@ import Latex from "react-latex-next";
 import { DynamicTableContent } from '../../types/ui';
 
 export const DynamicTable = ({headers, rows}:DynamicTableContent) => {
-
   return (
     <Table bordered>
       <thead>
